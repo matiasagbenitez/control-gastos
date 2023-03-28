@@ -10,11 +10,21 @@ export const ListadoGastos = ({
 }) => {
   return (
     <div className="listado-gastos contenedor">
-      <h2>{gastos.length > 0 && "Listado de gastos"}</h2>
-
+      {gastos.length > 0 && (
+        <>
+          <h2>Listado de gastos</h2>
+          <p className="texto-deslizar">
+            Puedes editar un gasto deslizándolo hacia la derecha, o bien,
+            eliminar uno de ellos deslizándolo hacia la izquierda.
+          </p>
+        </>
+      )}
       {filtro ? (
         <>
-          {gastosFiltrados.length > 0 ? (
+          {!(gastosFiltrados.length > 0) && (
+            <h2>No hay gastos en esta categoría</h2>
+          )}
+          {gastosFiltrados.length > 0 &&
             gastosFiltrados.map((gasto) => (
               <Gasto
                 key={gasto.id}
@@ -22,10 +32,7 @@ export const ListadoGastos = ({
                 setGastoEditar={setGastoEditar}
                 eliminarGasto={eliminarGasto}
               />
-            ))
-          ) : (
-            <h2>No hay gastos en esta categoría</h2>
-          )}
+            ))}
         </>
       ) : (
         <>

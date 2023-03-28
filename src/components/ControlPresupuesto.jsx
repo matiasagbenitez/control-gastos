@@ -55,7 +55,7 @@ export const ControlPresupuesto = ({
 
   const handleResetApp = () => {
     Swal.fire({
-      title: "¿Deseas reiniciar la app?",
+      title: "¿Deseas reiniciar la aplicación?",
       text: "¡No podrás revertir esta acción!",
       icon: "warning",
       showCancelButton: true,
@@ -69,8 +69,8 @@ export const ControlPresupuesto = ({
         setGastos([]);
         setIsValidPresupuesto(false);
         Swal.fire({
-          title: "¡Reiniciado!",
-          text: "La app ha sido reiniciada.",
+          title: "¡Genial!",
+          text: "La aplicación se reinició correctamente.",
           icon: "success",
           confirmButtonColor: "#1E7E34",
         });

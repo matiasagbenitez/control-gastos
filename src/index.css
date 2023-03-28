@@ -28,10 +28,13 @@ html {
 }
 
 h1 {
-  font-size: 3rem;
+  font-size: 4rem;
+  font-weight: 900;
 }
+
 h2 {
   font-size: 2rem;
+  text-align: center;
 }
 
 .sombra {
@@ -39,7 +42,7 @@ h2 {
   -webkit-box-shadow: 0px 9px 10px -10px rgba(0, 0, 0, 0.51);
   -moz-box-shadow: 0px 9px 10px -10px rgba(0, 0, 0, 0.51);
   background-color: var(--blanco);
-  padding: 4rem;
+  padding: 3rem 2rem;
   border-radius: 1.2rem;
 }
 
@@ -58,7 +61,7 @@ header h1 {
 
 .formulario {
   margin: 0 auto;
-  padding: 5rem;
+  padding: 5rem 5rem 5rem 3rem;
 }
 @media (min-width: 768px) {
   .formulario {
@@ -267,7 +270,7 @@ main {
   gap: 2rem;
 }
 .filtros label {
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: 900;
   color: var(--gris-oscuro);
 }
@@ -297,13 +300,13 @@ main {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
   margin-bottom: 2rem;
   width: 100%;
 }
 
 .cantidad-gasto {
-  font-size: 2.4rem;
+  font-size: 2rem;
   color: var(--negro);
   font-weight: 900;
 }
@@ -315,7 +318,21 @@ main {
 }
 
 .contenido-gasto img {
-  width: 10rem;
+  width: 5rem;
+}
+
+/* Media query */
+@media (min-width: 768px) {
+  .contenido-gasto {
+    gap: 4rem;
+  }
+  .contenido-gasto img {
+    width: 8rem;
+  }
+
+  .cantidad-gasto {
+    font-size: 2.5rem;
+  }
 }
 
 .descripcion-gasto p {
@@ -431,4 +448,8 @@ body .modal {
   align-items: center;
   font-size: 2rem;
   text-align: right;
+}
+
+.texto-deslizar {
+  font-size: 1.3rem;
 }
