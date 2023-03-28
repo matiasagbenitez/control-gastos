@@ -8,13 +8,20 @@ export const Header = ({
   isValidPresupuesto,
   setIsValidPresupuesto,
   gastos,
+  setGastos,
 }) => {
   return (
     <header>
       <h1>Control de Gastos</h1>
 
       {isValidPresupuesto ? (
-        <ControlPresupuesto presupuesto={presupuesto} gastos={gastos} />
+        <ControlPresupuesto
+          presupuesto={presupuesto}
+          setPresupuesto={setPresupuesto}
+          gastos={gastos}
+          setGastos={setGastos}
+          setIsValidPresupuesto={setIsValidPresupuesto}
+        />
       ) : (
         <NuevoPresupuesto
           presupuesto={presupuesto}

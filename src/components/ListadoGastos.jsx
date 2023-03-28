@@ -10,7 +10,7 @@ export const ListadoGastos = ({
 }) => {
   return (
     <div className="listado-gastos contenedor">
-      <h2>{gastos.length > 0 ? "Listado de gastos" : "No hay gastos aún"}</h2>
+      <h2>{gastos.length > 0 && "Listado de gastos"}</h2>
 
       {filtro ? (
         <>
