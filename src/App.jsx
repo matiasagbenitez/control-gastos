@@ -5,6 +5,28 @@ import { Modal } from "./components/Modal";
 import { Filtros } from "./components/Filtros";
 import IconoNuevoGasto from "./img/nuevo-gasto.svg";
 
+import Swal from "sweetalert2";
+import "sweetalert2/dist/sweetalert2.min.css";
+
+const alert = (icon = "success", title = "Signed in successfully") => {
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    },
+  });
+
+  Toast.fire({
+    icon: icon,
+    title: title,
+  });
+};
+
 function App() {
   const [presupuesto, setPresupuesto] = useState(
     Number(localStorage.getItem("presupuesto")) ?? 0
@@ -38,8 +60,10 @@ function App() {
       });
       setGastos(gastosActualizados);
       setGastoEditar({});
+      alert("success", "Gasto editado correctamente.");
     } else {
       setGastos([...gastos, gasto]);
+      alert("success", "Gasto agregado correctamente.");
     }
     setAnimarModal(false);
     setTimeout(() => {
@@ -50,6 +74,7 @@ function App() {
   const eliminarGasto = (id) => {
     const gastosActualizados = gastos.filter((gasto) => gasto.id !== id);
     setGastos(gastosActualizados);
+    alert("success", "Gasto eliminado correctamente.");
   };
 
   useEffect(() => {

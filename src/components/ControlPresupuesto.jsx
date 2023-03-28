@@ -1,13 +1,15 @@
 import { useState, useEffect } from "react";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import Swal from "sweetalert2";
+import "sweetalert2/dist/sweetalert2.min.css";
 
 export const ControlPresupuesto = ({
   presupuesto,
   setPresupuesto,
   gastos,
   setGastos,
-  setIsValidPresupuesto
+  setIsValidPresupuesto,
 }) => {
   const [disponible, setDisponible] = useState(0);
   const [gastado, setGastado] = useState(0);
@@ -33,15 +35,28 @@ export const ControlPresupuesto = ({
   };
 
   const handleResetApp = () => {
-    const resultado = window.confirm(
-      "¿Estás seguro de que quieres resetear la app?"
-    );
-
-    if (resultado) {
-      setPresupuesto(0);
-      setGastos([]);
-      setIsValidPresupuesto(false);
-    }
+    Swal.fire({
+      title: "¿Deseas reiniciar la app?",
+      text: "¡No podrás revertir esta acción!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3B82F6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí, reiniciar",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setPresupuesto(0);
+        setGastos([]);
+        setIsValidPresupuesto(false);
+        Swal.fire({
+          title: "¡Reiniciado!",
+          text: "La app ha sido reiniciada.",
+          icon: "success",
+          confirmButtonColor: "#3B82F6",
+        });
+      }
+    });
   };
 
   return (
