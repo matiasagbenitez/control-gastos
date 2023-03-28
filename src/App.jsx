@@ -30,6 +30,7 @@ function App() {
         }
       });
       setGastos(gastosActualizados);
+      setGastoEditar({});
     } else {
       setGastos([...gastos, gasto]);
     }
@@ -37,6 +38,11 @@ function App() {
     setTimeout(() => {
       setModal(false);
     }, 400);
+  };
+
+  const eliminarGasto = (id) => {
+    const gastosActualizados = gastos.filter((gasto) => gasto.id !== id);
+    setGastos(gastosActualizados);
   };
 
   useEffect(() => {
@@ -61,7 +67,7 @@ function App() {
       {isValidPresupuesto && (
         <>
           <main>
-            <ListadoGastos gastos={gastos} setGastoEditar={setGastoEditar} />
+            <ListadoGastos gastos={gastos} setGastoEditar={setGastoEditar} eliminarGasto={eliminarGasto} />
           </main>
           <div className="nuevo-gasto">
             <img
