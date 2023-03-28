@@ -168,9 +168,9 @@ header h1 {
 .dos-columnas {
   flex-direction: column;
 }
-.dos-columnas :first-child {
+/* .dos-columnas :first-child {
   margin-bottom: 4rem;
-}
+} */
 @media (min-width: 768px) {
   .dos-columnas {
     flex-direction: row;
@@ -180,9 +180,9 @@ header h1 {
   .dos-columnas > div {
     width: 50%;
   }
-  .dos-columnas :first-child {
+  /* .dos-columnas :first-child {
     margin-bottom: 0;
-  }
+  } */
 }
 .formulario input[type="text"].nuevo-presupuesto,
 .formulario input[type="number"].nuevo-presupuesto {
@@ -195,6 +195,7 @@ header h1 {
 }
 
 .contenido-presupuesto {
+  margin-top: 2rem;
   width: 100%;
 }
 .contenido-presupuesto p {
@@ -230,9 +231,29 @@ header h1 {
   border-radius: 1rem;
   transition-property: background-color;
   transition-duration: 300ms;
+  margin-bottom: 1rem;
 }
 .reset-app:hover {
   background-color: #c71465;
+  cursor: pointer;
+}
+
+.inyect-app {
+  border: none;
+  background-color: #1e7e34;
+  padding: 1rem;
+  width: 100%;
+  text-align: center;
+  color: var(--blanco);
+  text-transform: uppercase;
+  font-weight: 900;
+  font-size: 1.3rem;
+  border-radius: 1rem;
+  transition-property: background-color;
+  transition-duration: 300ms;
+}
+.inyect-app:hover {
+  background-color: #1a6b2c;
   cursor: pointer;
 }
 
@@ -328,8 +349,8 @@ main {
 
 .nuevo-gasto {
   position: fixed;
-  bottom: 5rem;
-  right: 5rem;
+  bottom: 2.5rem;
+  right: 2.5rem;
 }
 
 .nuevo-gasto img {

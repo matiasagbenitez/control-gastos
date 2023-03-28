@@ -4,6 +4,25 @@ import "react-circular-progressbar/dist/styles.css";
 import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
 
+const alert = (icon = "success", title = "Signed in successfully") => {
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    },
+  });
+
+  Toast.fire({
+    icon: icon,
+    title: title,
+  });
+};
+
 export const ControlPresupuesto = ({
   presupuesto,
   setPresupuesto,
@@ -40,7 +59,7 @@ export const ControlPresupuesto = ({
       text: "¡No podrás revertir esta acción!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3B82F6",
+      confirmButtonColor: "#1E7E34",
       cancelButtonColor: "#d33",
       confirmButtonText: "Sí, reiniciar",
       cancelButtonText: "Cancelar",
@@ -53,8 +72,42 @@ export const ControlPresupuesto = ({
           title: "¡Reiniciado!",
           text: "La app ha sido reiniciada.",
           icon: "success",
-          confirmButtonColor: "#3B82F6",
+          confirmButtonColor: "#1E7E34",
         });
+      }
+    });
+  };
+
+  const handleInyectPresupuesto = () => {
+    Swal.fire({
+      title: "Ingresa la cantidad de presupuesto que deseas inyectar",
+      input: "number",
+      showCancelButton: true,
+      confirmButtonText: "Inyectar",
+      confirmButtonColor: "#1E7E34",
+      cancelButtonColor: "#d33",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        if (Number(result.value) <= 0) {
+          Swal.fire({
+            title: "¡Ups!",
+            text: "La cantidad debe ser mayor a 0.",
+            icon: "error",
+            confirmButtonColor: "#3B82F6",
+          });
+          return;
+        } else {
+          setPresupuesto(presupuesto + Number(result.value));
+          setDisponible(disponible + Number(result.value));
+          alert("success", "Presupuesto inyectado correctamente.");
+          setTimeout(() => {
+            setPorcentaje(
+              ((gastado / (presupuesto + Number(result.value))) * 100).toFixed(
+                2
+              )
+            );
+          }, 1000);
+        }
       }
     });
   };
@@ -76,6 +129,14 @@ export const ControlPresupuesto = ({
       <div className="contenido-presupuesto">
         <button className="reset-app" type="button" onClick={handleResetApp}>
           Resetear app
+        </button>
+
+        <button
+          className="inyect-app"
+          type="button"
+          onClick={handleInyectPresupuesto}
+        >
+          Inyectar presupuesto
         </button>
         <p>
           <span>Presupuesto:</span> {formatearCantidad(presupuesto)}
